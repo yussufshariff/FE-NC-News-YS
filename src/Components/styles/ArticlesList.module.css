@@ -1,0 +1,17 @@
+.ArticleUL {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-gap: 10px;
+}
+
+.ArticleH2 {
+  margin-top: 2%;
+  font-size: 4rem;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.ArticleUL img {
+  width: 150px;
+  height: 150px;
+}
