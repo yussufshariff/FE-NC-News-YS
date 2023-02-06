@@ -4,12 +4,22 @@ import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getAllArticles().then((articles) => {
       setArticles(articles);
+      setIsLoading(false);
     });
   });
+
+  if (isLoading) {
+    return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
 
   return (
     <section>
