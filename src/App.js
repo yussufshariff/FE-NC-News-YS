@@ -1,3 +1,4 @@
+import ArticlesList from "./Components/ArticlesList";
 import Header from "./Components/Header";
 import Nav from "./Components/NavBar";
 
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <Nav />
       <Header />
+      <ArticlesList />
     </div>
   );
 }
