@@ -1,0 +1,20 @@
+.navBarUl {
+  margin: 0;
+  padding: 0;
+}
+
+.navBarLi {
+  list-style-type: none;
+  margin: 0;
+  text-align: center;
+}
+
+.navBarLi a {
+  color: rgb(0, 0, 0);
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navBarLi a:hover {
+  background-color: rgb(65, 65, 68);
+}
