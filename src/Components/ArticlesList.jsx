@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { getAllArticles } from "../utils/api.js";
 import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
 import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
@@ -21,20 +25,27 @@ export default function ArticlesList() {
       </div>
     );
   }
-
   return (
     <section>
       <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
-      <ul className={ArticlesCSS.ArticleUL}>
-        {articles.map((article) => (
-          <section key={article.article_id}>
-            <Link to={`/articles/${article.article_id}`}>
-              <p>{article.title}</p>
-              <img src={article.article_img_url} alt={article.title}></img>
-            </Link>
-          </section>
-        ))}
-      </ul>
+      <Row>
+        {articles.map((article) => {
+          return (
+            <Col className="col-3">
+              <Card key={article.article_id}>
+                <Card.Img variant="top" src={article.article_img_url} />
+                <Card.Body>
+                  <Card.Title>{article.title}</Card.Title>
+                  <Card.Text> Written by : {article.author}</Card.Text>
+                  <Link to={`/articles/${article.article_id}`}>
+                    <Button variant="primary">Read More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
     </section>
   );
 }
