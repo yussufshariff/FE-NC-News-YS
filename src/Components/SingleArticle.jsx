@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import SingleArticleCSS from "../Components/styles/SingleArticle.module.css";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -17,17 +18,15 @@ export default function SingleArticle() {
       });
   }, [article_id]);
 
-  console.log(article);
-
   return (
-    <section key={article.article_id}>
+    <section key={article.article_id} className={SingleArticleCSS.single}>
       <h3>{article.title}</h3>
       <h4> Written by {article.author}</h4>
       <p>{article.body}</p>
-      <img src={article.article_img_url} alt={article.title}></img>
       <p>Comments: {article.comment_count}</p>
       <p> Date - {article.created_at?.replace(/-/g, "/").slice(0, 10)}</p>
       <p> Time - {article.created_at?.slice(11, 16)}</p>
+      <img src={article.article_img_url} alt={article.title}></img>
     </section>
   );
 }
