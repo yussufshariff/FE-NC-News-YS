@@ -9,3 +9,11 @@ export const getAllArticles = () => {
     return articles;
   });
 };
+
+export const getArticleById = (article_id) => {
+  return request
+    .get(`/articles/${article_id}`)
+    .then(({ data: { articles } }) => {
+      return articles;
+    });
+};
