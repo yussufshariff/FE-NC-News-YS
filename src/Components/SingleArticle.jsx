@@ -1,22 +1,29 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import SingleArticleCSS from "../Components/styles/SingleArticle.module.css";
+import { getArticleById } from "../utils/api";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
 
   const [article, setArticle] = useState({});
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    axios
-      .get(
-        `https://ys-back-end-news-project.onrender.com/api/articles/${article_id}`
-      )
-      .then(({ data: { articles } }) => {
-        setArticle(articles);
-      });
+    getArticleById(article_id).then((article) => {
+      setArticle(article);
+      setIsLoading(false);
+    });
   }, [article_id]);
+
+  if (isLoading) {
+    return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+    );
+  }
 
   return (
     <section key={article.article_id} className={SingleArticleCSS.single}>
