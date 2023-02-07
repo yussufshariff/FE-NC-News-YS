@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import SingleArticleCSS from "../Components/styles/SingleArticle.module.css";
 import { getArticleById } from "../utils/api";
 
+import Comments from "./Comments";
+
 export default function SingleArticle() {
   const { article_id } = useParams();
 
@@ -31,6 +33,7 @@ export default function SingleArticle() {
       <h4> Written by {article.author}</h4>
       <p>{article.body}</p>
       <p>Comments: {article.comment_count}</p>
+      <Comments />
       <p> Date - {article.created_at?.replace(/-/g, "/").slice(0, 10)}</p>
       <p> Time - {article.created_at?.slice(11, 16)}</p>
       <img src={article.article_img_url} alt={article.title}></img>
