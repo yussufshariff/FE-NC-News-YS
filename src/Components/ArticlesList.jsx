@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
@@ -25,9 +26,20 @@ export default function ArticlesList() {
       </div>
     );
   }
+
   return (
     <section>
       <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
+      <Dropdown>
+        <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+          Sort by
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item href="#/">Date</Dropdown.Item>
+          <Dropdown.Item href="#/">Author</Dropdown.Item>
+          <Dropdown.Item href="#/">Placeholder</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
       <Row>
         {articles.map((article) => {
           return (
