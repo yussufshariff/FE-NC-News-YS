@@ -42,7 +42,7 @@ export default function Voting({ votes, article_id }) {
         👍
       </Button>
 
-      <span>{votes + vote} votes</span>
+      <span className="votes">{votes + vote} votes</span>
       <Button
         className="btn btn-danger"
         disabled={vote === -1}
