@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticleById } from "../utils/api";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  ListGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 
 import Comments from "./Comments";
 

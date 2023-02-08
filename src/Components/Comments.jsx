@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../utils/api";
 import { useParams } from "react-router";
 import { Form, Button, ListGroup } from "react-bootstrap";
+import Voting from "./Voting";
 
 export default function Comments() {
   const { article_id } = useParams();
@@ -36,7 +37,7 @@ export default function Comments() {
             </small>
           </div>
           <p className="mb-1">{comment.body}</p>
-          <small className="text-muted">Votes: {comment.votes}</small>
+          <Voting votes={comment.votes} />
         </ListGroup.Item>
       ))}
     </ListGroup>
