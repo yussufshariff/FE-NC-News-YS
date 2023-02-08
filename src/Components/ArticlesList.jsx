@@ -33,14 +33,18 @@ export default function ArticlesList() {
       <Row>
         {articles.map((article) => {
           return (
-            <Col className="col-3">
+            <Col className="col-md-3">
               <Card key={article.article_id}>
                 <Card.Img variant="top" src={article.article_img_url} />
                 <Card.Body>
-                  <Card.Title>{article.title}</Card.Title>
+                  <Card.Title className={ArticlesCSS.ArticleTitle}>
+                    {article.title}
+                  </Card.Title>
                   <Card.Text> Written by : {article.author}</Card.Text>
                   <Link to={`/articles/${article.article_id}`}>
-                    <Button variant="primary">Read More</Button>
+                    <Button className={ArticlesCSS.btn} variant="primary">
+                      Read More
+                    </Button>
                   </Link>
                 </Card.Body>
               </Card>
