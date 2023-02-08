@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../utils/api";
 import { useParams } from "react-router";
 import { Form, Button, ListGroup } from "react-bootstrap";
-import Voting from "./Voting";
 
 export default function Comments() {
   const { article_id } = useParams();
@@ -27,7 +26,7 @@ export default function Comments() {
   return (
     <ListGroup>
       {comments.map((comment) => (
-        <ListGroup.Item key={comment.id}>
+        <ListGroup.Item key={comment.comment_id}>
           <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">{comment.author}</h5>
             <small className="text-muted">
@@ -37,7 +36,7 @@ export default function Comments() {
             </small>
           </div>
           <p className="mb-1">{comment.body}</p>
-          <Voting votes={comment.votes} />
+          <small className="text-muted">Votes: {comment.votes}</small>
         </ListGroup.Item>
       ))}
     </ListGroup>

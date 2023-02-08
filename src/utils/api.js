@@ -25,3 +25,11 @@ export const getCommentsByArticleId = (article_id) => {
       return comments;
     });
 };
+
+export const patchArticle = (article_id, inc_votes) => {
+  const patchBody = {
+    inc_votes: inc_votes,
+  };
+
+  return request.patch(`/articles/${article_id}`, patchBody);
+};
