@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import SingleArticleCSS from "../Components/styles/SingleArticle.module.css";
 import { getArticleById } from "../utils/api";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+  ListGroup,
+} from "react-bootstrap";
+
+import Comments from "./Comments";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -26,14 +36,44 @@ export default function SingleArticle() {
   }
 
   return (
-    <section key={article.article_id} className={SingleArticleCSS.single}>
-      <h3>{article.title}</h3>
-      <h4> Written by {article.author}</h4>
-      <p>{article.body}</p>
-      <p>Comments: {article.comment_count}</p>
-      <p> Date - {article.created_at?.replace(/-/g, "/").slice(0, 10)}</p>
-      <p> Time - {article.created_at?.slice(11, 16)}</p>
-      <img src={article.article_img_url} alt={article.title}></img>
-    </section>
+    <Container>
+      <Row className="my-5">
+        <Col xs={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>{article.title}</Card.Title>
+            </Card.Header>
+            <Card.Body>
+              <Card.Text>{article.body}</Card.Text>
+              {/* <Card.Img variant="top" src={article.article_img_url} /> */}
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">
+                Date Created -{" "}
+                {article.created_at?.replace(/-/g, "/").slice(0, 10)}
+              </small>
+              <Card.Text> Written by {article.author}</Card.Text>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row className="my-5">
+        <Col xs={12}>
+          <Card>
+            <Card.Header>
+              <Card.Title>Comments</Card.Title>
+            </Card.Header>
+            <ListGroup variant="flush">
+              <Comments />
+              <ListGroup.Item>
+                <br />
+                <small className="text-muted">{}</small>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 }

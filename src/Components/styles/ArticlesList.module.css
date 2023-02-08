@@ -16,3 +16,23 @@
   width: 150px;
   height: 150px;
 }
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1300px) {
+  .ArticleH2 {
+    font-size: 2rem;
+  }
+  .ArticleP {
+    font-size: 2rem;
+  }
+  .ArticleTitle {
+    font-size: 20px;
+  }
+  .btn {
+    font-size: 12px;
+  }
+}
