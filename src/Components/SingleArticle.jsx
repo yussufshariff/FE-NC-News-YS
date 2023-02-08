@@ -71,14 +71,6 @@ export default function SingleArticle() {
                 <small className="text-muted">{}</small>
               </ListGroup.Item>
             </ListGroup>
-            <Card.Footer>
-              <Form>
-                <Form.Group>
-                  <Form.Control />
-                </Form.Group>
-              </Form>
-              <Button type="submit">Submit</Button>
-            </Card.Footer>
           </Card>
         </Col>
       </Row>
