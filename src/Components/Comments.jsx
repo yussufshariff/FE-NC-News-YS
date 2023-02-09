@@ -26,6 +26,11 @@ export default function Comments() {
   }
   return (
     <ListGroup>
+      <PostingComments
+        article_id={article_id}
+        comments={comments}
+        setComments={setComments}
+      />
       {comments.map((comment) => (
         <ListGroup.Item key={comment.comment_id}>
           <div className="d-flex w-100 justify-content-between">
@@ -40,12 +45,6 @@ export default function Comments() {
           <small className="text-muted">Votes: {comment.votes}</small>
         </ListGroup.Item>
       ))}
-
-      <PostingComments
-        article_id={article_id}
-        comments={comments}
-        setComments={setComments}
-      />
     </ListGroup>
   );
 }
