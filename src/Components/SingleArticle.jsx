@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getArticleById } from "../utils/api";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  ListGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 
 import Comments from "./Comments";
+import Voting from "./Voting";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -45,6 +38,7 @@ export default function SingleArticle() {
             </Card.Header>
             <Card.Body>
               <Card.Text>{article.body}</Card.Text>
+              <Voting votes={article.votes} article_id={article_id} />
               {/* <Card.Img variant="top" src={article.article_img_url} /> */}
             </Card.Body>
             <Card.Footer>

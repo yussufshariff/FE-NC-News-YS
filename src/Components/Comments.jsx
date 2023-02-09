@@ -26,7 +26,7 @@ export default function Comments() {
   return (
     <ListGroup>
       {comments.map((comment) => (
-        <ListGroup.Item key={comment.id}>
+        <ListGroup.Item key={comment.comment_id}>
           <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">{comment.author}</h5>
             <small className="text-muted">
