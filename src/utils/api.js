@@ -42,7 +42,6 @@ export const postComment = (article_id, newComment, username) => {
   return request
     .post(`/articles/${article_id}/comments`, postBody)
     .then(({ data }) => {
-      console.log(data);
       return data;
     });
 };

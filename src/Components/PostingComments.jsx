@@ -9,9 +9,9 @@ export default function PostingComments({ article_id, setComments }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     postComment(article_id, newComment, "weegembump").then(
-      (commentsFromApi) => {
+      (newPostedComment) => {
         setComments((currentComments) => {
-          return [commentsFromApi, ...currentComments];
+          return [newPostedComment, ...currentComments];
         });
         setIsSubmitted(false);
       }
