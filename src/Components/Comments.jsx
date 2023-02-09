@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticleId } from "../utils/api";
 import { useParams } from "react-router";
-import { Form, Button, ListGroup } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
+import PostingComments from "./PostingComments";
 
 export default function Comments() {
   const { article_id } = useParams();
@@ -25,6 +26,11 @@ export default function Comments() {
   }
   return (
     <ListGroup>
+      <PostingComments
+        article_id={article_id}
+        comments={comments}
+        setComments={setComments}
+      />
       {comments.map((comment) => (
         <ListGroup.Item key={comment.comment_id}>
           <div className="d-flex w-100 justify-content-between">

@@ -23,7 +23,7 @@ export default function Voting({ votes, article_id }) {
 
   if (alerts) {
     return (
-      <div class="alert alert-success" role="alert">
+      <div className="alert alert-success" role="alert">
         Thanks for voting!
       </div>
     );
