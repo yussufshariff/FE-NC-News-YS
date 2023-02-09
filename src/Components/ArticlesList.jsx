@@ -43,7 +43,13 @@ export default function ArticlesList() {
 
   return (
     <section>
-      <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
+      {topic ? (
+        <h2 className={ArticlesCSS.ArticleH2}>
+          {topic.charAt(0).toUpperCase() + topic.slice(1)} Articles
+        </h2>
+      ) : (
+        <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
+      )}
 
       <Row>
         {articles.map((article) => {
