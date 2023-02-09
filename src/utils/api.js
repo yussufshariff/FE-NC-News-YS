@@ -33,3 +33,16 @@ export const patchArticle = (article_id, inc_votes) => {
 
   return request.patch(`/articles/${article_id}`, patchBody);
 };
+
+export const postComment = (article_id, newComment, username) => {
+  const postBody = {
+    username: username,
+    body: newComment,
+  };
+  return request
+    .post(`/articles/${article_id}/comments`, postBody)
+    .then(({ data }) => {
+      console.log(data);
+      return data;
+    });
+};
