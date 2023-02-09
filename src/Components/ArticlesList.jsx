@@ -37,14 +37,10 @@ export default function ArticlesList() {
               <Card key={article.article_id}>
                 <Card.Img variant="top" src={article.article_img_url} />
                 <Card.Body>
-                  <Card.Title className={ArticlesCSS.ArticleTitle}>
-                    {article.title}
-                  </Card.Title>
+                  <Card.Title>{article.title}</Card.Title>
                   <Card.Text> Written by : {article.author}</Card.Text>
                   <Link to={`/articles/${article.article_id}`}>
-                    <Button className={ArticlesCSS.btn} variant="primary">
-                      Read More
-                    </Button>
+                    <Button variant="primary">Read More</Button>
                   </Link>
                 </Card.Body>
               </Card>
