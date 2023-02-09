@@ -2,25 +2,38 @@ import { useState } from "react";
 import { postComment } from "../utils/api";
 import { Card, Form, Button, FormControl, FormLabel } from "react-bootstrap";
 
-export default function PostingComments({ article_id }) {
+export default function PostingComments({ article_id, setComments }) {
   const [newComment, setNewComment] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postComment(article_id, newComment, "grumpy19");
+    postComment(article_id, newComment, "weegembump").then(
+      (commentsFromApi) => {
+        setComments((currentComments) => {
+          return [commentsFromApi, ...currentComments];
+        });
+        setIsSubmitted(false);
+      }
+    );
     setNewComment("");
-    console.log(newComment);
   };
 
   return (
     <Card.Footer>
       <Form onSubmit={handleSubmit}>
         <FormLabel>Post a comment here: </FormLabel>
-        <FormControl
-          as="textarea"
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-        />
+        {isSubmitted ? (
+          <FormControl
+            as="textarea"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
+        ) : (
+          <div className="alert alert-primary" role="alert">
+            Thanks for commenting!
+          </div>
+        )}
         <Button type="submit">Submit</Button>
       </Form>
     </Card.Footer>

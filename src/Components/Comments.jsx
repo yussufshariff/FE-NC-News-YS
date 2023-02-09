@@ -41,7 +41,11 @@ export default function Comments() {
         </ListGroup.Item>
       ))}
 
-      <PostingComments article_id={article_id} comments={comments} />
+      <PostingComments
+        article_id={article_id}
+        comments={comments}
+        setComments={setComments}
+      />
     </ListGroup>
   );
 }
