@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../utils/api.js";
 import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
+import { useParams } from "react-router";
+import axios from "axios";
+
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -10,12 +13,24 @@ import Button from "react-bootstrap/Button";
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { topic } = useParams();
 
   useEffect(() => {
-    getAllArticles().then((articles) => {
-      setArticles(articles);
-      setIsLoading(false);
-    });
+    if (!topic) {
+      getAllArticles().then((articles) => {
+        setArticles(articles);
+        setIsLoading(false);
+      });
+    } else {
+      axios
+        .get(
+          `https://ys-back-end-news-project.onrender.com/api/articles?topic=${topic}`
+        )
+        .then(({ data: { articles } }) => {
+          setArticles(articles);
+          setIsLoading(false);
+        });
+    }
   });
 
   if (isLoading) {
