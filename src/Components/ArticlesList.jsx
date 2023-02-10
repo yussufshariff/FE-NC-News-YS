@@ -15,10 +15,11 @@ export default function ArticlesList() {
   const { topic } = useParams();
 
   const [sortBy, setSortBy] = useState("title");
+  const [orderBy, setOrderBy] = useState("asc");
 
   useEffect(() => {
     if (!topic) {
-      getAllArticles(sortBy).then((articles) => {
+      getAllArticles(sortBy, orderBy).then((articles) => {
         setArticles(articles);
         setIsLoading(false);
       });
@@ -49,6 +50,9 @@ export default function ArticlesList() {
         <button onClick={() => setSortBy("created_at")}>Date</button>
         <button onClick={() => setSortBy("comment_count")}>Comments</button>
         <button onClick={() => setSortBy("votes")}>Votes</button>
+        <p>Order by: </p>
+        <button onClick={() => setOrderBy("desc")}>Descending</button>
+        <button onClick={() => setOrderBy("asc")}>Ascending</button>
       </section>
       {topic ? (
         <h2 className={ArticlesCSS.ArticleH2}>
