@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { getAllArticles } from "../utils/api.js";
-import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
-import { useParams } from "react-router";
-import axios from "axios";
-
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
+import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -15,9 +14,11 @@ export default function ArticlesList() {
   const [isLoading, setIsLoading] = useState(true);
   const { topic } = useParams();
 
+  const [sortBy, setSortBy] = useState("title");
+
   useEffect(() => {
     if (!topic) {
-      getAllArticles().then((articles) => {
+      getAllArticles(sortBy).then((articles) => {
         setArticles(articles);
         setIsLoading(false);
       });
@@ -43,6 +44,12 @@ export default function ArticlesList() {
 
   return (
     <section>
+      <section>
+        <p>Sort By:</p>
+        <button onClick={() => setSortBy("created_at")}>Date</button>
+        <button onClick={() => setSortBy("comment_count")}>Comments</button>
+        <button onClick={() => setSortBy("votes")}>Votes</button>
+      </section>
       {topic ? (
         <h2 className={ArticlesCSS.ArticleH2}>
           {topic.charAt(0).toUpperCase() + topic.slice(1)} Articles
@@ -54,13 +61,16 @@ export default function ArticlesList() {
       <Row>
         {articles.map((article) => {
           return (
-            <Col className="col-md-3">
-              <Card key={article.article_id}>
+            <Col className="col-md-3" key={article.article_id}>
+              <Card>
                 <Card.Img variant="top" src={article.article_img_url} />
                 <Card.Body>
                   <Card.Title>{article.title}</Card.Title>
                   <Card.Text> Written by : {article.author}</Card.Text>
                   <Link to={`/articles/${article.article_id}`}>
+                    <small className="text-muted">
+                      {article.created_at?.replace(/-/g, "/").slice(0, 10)}
+                    </small>
                     <Button variant="primary">Read More</Button>
                   </Link>
                 </Card.Body>
