@@ -4,10 +4,11 @@ const request = axios.create({
   baseURL: "https://ys-back-end-news-project.onrender.com/api",
 });
 
-export const getAllArticles = (sortBy, order) => {
+export const getAllArticles = (topic, sortBy, order) => {
   return request
     .get("/articles", {
       params: {
+        topic: topic,
         sort_by: sortBy,
         order: order,
       },

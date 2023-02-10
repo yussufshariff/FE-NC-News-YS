@@ -18,22 +18,11 @@ export default function ArticlesList() {
   const [orderBy, setOrderBy] = useState("asc");
 
   useEffect(() => {
-    if (!topic) {
-      getAllArticles(sortBy, orderBy).then((articles) => {
-        setArticles(articles);
-        setIsLoading(false);
-      });
-    } else {
-      axios
-        .get(
-          `https://ys-back-end-news-project.onrender.com/api/articles?topic=${topic}`
-        )
-        .then(({ data: { articles } }) => {
-          setArticles(articles);
-          setIsLoading(false);
-        });
-    }
-  });
+    getAllArticles(topic, sortBy, orderBy).then((articles) => {
+      setArticles(articles);
+      setIsLoading(false);
+    });
+  }, [topic, sortBy, orderBy]);
 
   if (isLoading) {
     return (
