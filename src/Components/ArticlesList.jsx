@@ -8,6 +8,7 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
@@ -34,15 +35,6 @@ export default function ArticlesList() {
 
   return (
     <section>
-      <section>
-        <p>Sort By:</p>
-        <button onClick={() => setSortBy("created_at")}>Date</button>
-        <button onClick={() => setSortBy("comment_count")}>Comments</button>
-        <button onClick={() => setSortBy("votes")}>Votes</button>
-        <p>Order by: </p>
-        <button onClick={() => setOrderBy("desc")}>Descending</button>
-        <button onClick={() => setOrderBy("asc")}>Ascending</button>
-      </section>
       {topic ? (
         <h2 className={ArticlesCSS.ArticleH2}>
           {topic.charAt(0).toUpperCase() + topic.slice(1)} Articles
@@ -50,6 +42,35 @@ export default function ArticlesList() {
       ) : (
         <h2 className={ArticlesCSS.ArticleH2}>All Articles</h2>
       )}
+      <section>
+        <Dropdown>
+          <Dropdown.Toggle
+            id="dropdown-button-dark-example1"
+            variant="secondary"
+          >
+            Sort by
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu variant="dark">
+            <Dropdown.Item onClick={() => setSortBy("created_at")}>
+              Date
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortBy("comment_count")}>
+              Comments
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setSortBy("votes")}>
+              Votes
+            </Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={() => setOrderBy("asc")}>
+              Ascending
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setOrderBy("desc")}>
+              Descending
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </section>
 
       <Row>
         {articles.map((article) => {
