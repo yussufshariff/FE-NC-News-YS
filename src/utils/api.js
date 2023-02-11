@@ -62,8 +62,7 @@ export const deleteComment = (comment_id) => {
 };
 
 export const getUsers = () => {
-  return request.get("/users").then(({ data }) => {
-    console.log(data);
-    return data;
+  return request.get("/users").then(({ data: { users } }) => {
+    return users;
   });
 };
