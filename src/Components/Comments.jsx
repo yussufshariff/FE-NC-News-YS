@@ -3,6 +3,7 @@ import { getCommentsByArticleId } from "../utils/api";
 import { useParams } from "react-router";
 import { ListGroup } from "react-bootstrap";
 import PostingComments from "./PostingComments";
+import DeletingComments from "./DeletingComments";
 
 export default function Comments() {
   const { article_id } = useParams();
@@ -43,6 +44,7 @@ export default function Comments() {
           </div>
           <p className="mb-1">{comment.body}</p>
           <small className="text-muted">Votes: {comment.votes}</small>
+          <DeletingComments comment_id={comment.comment_id} />
         </ListGroup.Item>
       ))}
     </ListGroup>

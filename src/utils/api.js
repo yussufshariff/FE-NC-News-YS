@@ -53,3 +53,16 @@ export const postComment = (article_id, newComment, username) => {
       return data;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return request.delete(`/comments/${comment_id}`).then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};
+
+export const getUsers = () => {
+  return request.get("/users").then(({ data: { users } }) => {
+    return users;
+  });
+};
