@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { deleteComment } from "../utils/api";
 import Button from "react-bootstrap/Button";
+import { UserContext } from "../Contexts/userContext";
+import { useContext } from "react";
 
 export default function DeletingComments({ comment_id }) {
   const [isDeleted, setIsDeleted] = useState(false);

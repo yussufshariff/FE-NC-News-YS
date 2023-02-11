@@ -1,10 +1,11 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserContext } from "../Contexts/userContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
-const NavComponent = () => {
-  const { loggedInUser } = useContext(UserContext);
+const NavComponent = ({ user }) => {
+  const userValue = useContext(UserContext);
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -28,7 +29,7 @@ const NavComponent = () => {
           </Nav>
         </Navbar.Collapse>
         <Navbar.Text>
-          Signed in as: <a href="/users">{loggedInUser?.username}</a>
+          Signed in as: <a href="/users">{user.loggedInUser?.username}</a>
         </Navbar.Text>
       </Container>
     </Navbar>

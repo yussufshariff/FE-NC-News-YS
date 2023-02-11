@@ -7,13 +7,19 @@ import SingleArticle from "./Components/SingleArticle";
 import Users from "./Components/Users";
 import "../src/Components/styles/App.css";
 import { UserContext } from "./Contexts/userContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 function App() {
   const userValue = useContext(UserContext);
+  const [mainUser, setMainUser] = useState({});
+  useEffect(() => {
+    setMainUser(userValue);
+    console.log(mainUser);
+  });
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar user={mainUser} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/users" element={<Users />} />
