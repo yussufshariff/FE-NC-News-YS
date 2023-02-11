@@ -5,8 +5,11 @@ import { Route, Routes } from "react-router-dom";
 import NavBar from "./Components/NavBar";
 import SingleArticle from "./Components/SingleArticle";
 import "../src/Components/styles/App.css";
+import { UserContext } from "./Contexts/userContext";
+import { useContext } from "react";
 
 function App() {
+  const userValue = useContext(UserContext);
   return (
     <div className="App">
       <NavBar />

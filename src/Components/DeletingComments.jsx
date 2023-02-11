@@ -1,19 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { deleteComment } from "../utils/api";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 export default function DeletingComments({ comment_id }) {
-  const [deleted, setDeleted] = useState("");
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleDeleteComment = () => {
     deleteComment(comment_id);
   };
 
+  if (isDeleted) {
+    return (
+      <div className="alert alert-success" role="alert">
+        Thanks for voting!
+      </div>
+    );
+  }
+
   return (
-    <h1>
-      <Button onClick={handleDeleteComment} variant="danger">
+    <section>
+      <Button
+        className="btn btn-success"
+        onClick={() => {
+          handleDeleteComment();
+          setIsDeleted(true);
+        }}
+      >
         Delete Comment
       </Button>
-    </h1>
+    </section>
   );
 }

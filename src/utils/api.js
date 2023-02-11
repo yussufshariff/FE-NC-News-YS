@@ -60,3 +60,10 @@ export const deleteComment = (comment_id) => {
     return data;
   });
 };
+
+export const getUsers = () => {
+  return request.get("/users").then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};
