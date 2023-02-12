@@ -7,7 +7,6 @@ import { useContext } from "react";
 export default function DeletingComments({ comment_id, username }) {
   const [isDeleted, setIsDeleted] = useState(false);
   const { loggedInUser } = useContext(UserContext);
-  // loggedInUser.username;
 
   const handleDeleteComment = () => {
     deleteComment(comment_id);

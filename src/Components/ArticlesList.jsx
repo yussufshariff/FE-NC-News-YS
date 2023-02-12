@@ -17,13 +17,26 @@ export default function ArticlesList() {
 
   const [sortBy, setSortBy] = useState("title");
   const [orderBy, setOrderBy] = useState("asc");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getAllArticles(topic, sortBy, orderBy).then((articles) => {
-      setArticles(articles);
-      setIsLoading(false);
-    });
+    getAllArticles(topic, sortBy, orderBy)
+      .then((articles) => {
+        setArticles(articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, [topic, sortBy, orderBy]);
+
+  if (error) {
+    return (
+      <div>
+        <h3>Error...</h3>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
