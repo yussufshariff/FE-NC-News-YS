@@ -44,7 +44,10 @@ export default function Comments() {
           </div>
           <p className="mb-1">{comment.body}</p>
           <small className="text-muted">Votes: {comment.votes}</small>
-          <DeletingComments comment_id={comment.comment_id} />
+          <DeletingComments
+            comment_id={comment.comment_id}
+            username={comment.author}
+          />
         </ListGroup.Item>
       ))}
     </ListGroup>

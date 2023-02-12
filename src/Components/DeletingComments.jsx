@@ -4,8 +4,10 @@ import Button from "react-bootstrap/Button";
 import { UserContext } from "../Contexts/userContext";
 import { useContext } from "react";
 
-export default function DeletingComments({ comment_id }) {
+export default function DeletingComments({ comment_id, username }) {
   const [isDeleted, setIsDeleted] = useState(false);
+  const { loggedInUser } = useContext(UserContext);
+  // loggedInUser.username;
 
   const handleDeleteComment = () => {
     deleteComment(comment_id);
@@ -21,15 +23,19 @@ export default function DeletingComments({ comment_id }) {
 
   return (
     <section>
-      <Button
-        className="btn btn-success"
-        onClick={() => {
-          handleDeleteComment();
-          setIsDeleted(true);
-        }}
-      >
-        Delete Comment
-      </Button>
+      {loggedInUser.username === username ? (
+        <Button
+          className="btn btn-success"
+          onClick={() => {
+            handleDeleteComment();
+            setIsDeleted(true);
+          }}
+        >
+          Delete Comment
+        </Button>
+      ) : (
+        ""
+      )}
     </section>
   );
 }
