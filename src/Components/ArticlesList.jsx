@@ -3,12 +3,13 @@ import { getAllArticles } from "../utils/api.js";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
-import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import dayjs from "dayjs";
 
 export default function ArticlesList() {
   const [articles, setArticles] = useState([]);
@@ -87,22 +88,26 @@ export default function ArticlesList() {
 
       <Row>
         {articles.map((article) => {
+          const date = dayjs(article.created_at).format("MMMM D, YYYY");
           return (
-            <Col className="col-md-3" key={article.article_id}>
-              <Card>
-                <Card.Img variant="top" src={article.article_img_url} />
-                <Card.Body>
-                  <Card.Title>{article.title}</Card.Title>
-                  <Card.Text> Written by : {article.author}</Card.Text>
-                  <Link to={`/articles/${article.article_id}`}>
-                    <small className="text-muted">
-                      {article.created_at?.replace(/-/g, "/").slice(0, 10)}
-                    </small>
-                    <Button variant="primary">Read More</Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </Col>
+            <Card style={{ width: "30rem" }}>
+              <Card.Img variant="bottom" src={article.article_img_url} />
+              <Card.Body>
+                <Card.Title>{article.title}</Card.Title>
+                <ListGroup.Item>Written by {article.author}</ListGroup.Item>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroup.Item>
+                  {article.comment_count} {""}💬
+                </ListGroup.Item>
+                <ListGroup.Item>{date}</ListGroup.Item>
+              </ListGroup>
+              <Card.Body>
+                <Link to={`/articles/${article.article_id}`}>
+                  <Button variant="primary">Read More</Button>
+                </Link>
+              </Card.Body>
+            </Card>
           );
         })}
       </Row>
