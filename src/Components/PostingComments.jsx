@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { postComment } from "../utils/api";
 import { Card, Form, Button, FormControl, FormLabel } from "react-bootstrap";
-
+import { UserContext } from "../Contexts/userContext";
+import { useContext } from "react";
 export default function PostingComments({ article_id, setComments }) {
   const [newComment, setNewComment] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(true);
-
+  const { loggedInUser } = useContext(UserContext);
+  const username = loggedInUser.username;
   const handleSubmit = (e) => {
     e.preventDefault();
-    postComment(article_id, newComment, "weegembump").then(
-      (newPostedComment) => {
-        setComments((currentComments) => {
-          return [newPostedComment, ...currentComments];
-        });
-        setIsSubmitted(false);
-      }
-    );
+    postComment(article_id, newComment, username).then((newPostedComment) => {
+      setComments((currentComments) => {
+        return [newPostedComment, ...currentComments];
+      });
+      setIsSubmitted(false);
+    });
     setNewComment("");
   };
 
