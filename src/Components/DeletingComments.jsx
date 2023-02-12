@@ -24,7 +24,7 @@ export default function DeletingComments({ comment_id, username }) {
     <section>
       {loggedInUser.username === username ? (
         <Button
-          className="btn btn-success"
+          className="btn btn-danger"
           onClick={() => {
             handleDeleteComment();
             setIsDeleted(true);
