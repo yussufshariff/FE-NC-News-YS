@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import ArticlesCSS from "../Components/styles/ArticlesList.module.css";
 import Card from "react-bootstrap/Card";
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Dropdown from "react-bootstrap/Dropdown";
 import ListGroup from "react-bootstrap/ListGroup";

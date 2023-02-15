@@ -101,5 +101,3 @@ export default function HomePage() {
     </section>
   );
 }
-
-// src={articles.article_img_url}

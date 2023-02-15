@@ -19,3 +19,23 @@
 .main-home {
   display: flex;
 }
+
+@media (min-width: 500px) {
+  main.title {
+    color: blue;
+  }
+}
+
+.footer {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1 0 auto;
+  padding: 10px;
+  flex-shrink: 0;
+  text-align: center;
+  background-color: rgb(31, 30, 30);
+  color: white;
+}
