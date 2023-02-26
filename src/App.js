@@ -6,7 +6,6 @@ import NavBar from "./Components/NavBar";
 import SingleArticle from "./Components/SingleArticle";
 import Users from "./Components/Users";
 import "../src/Components/styles/App.css";
-import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="*" element={<p>404 not found</p>} />
       </Routes>
-      <Footer />
     </div>
   );
 }
